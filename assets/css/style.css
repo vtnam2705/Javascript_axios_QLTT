@@ -1,0 +1,15 @@
+.form-group.invalid .form-control {
+    border-color: #f33a58;
+}
+
+.form-group.invalid .sp-inform {
+    color: #f33a58;
+}
+
+
+
+.sp-inform {
+    color: red;
+    margin-left: 2px;
+    /* display: none; */
+}
