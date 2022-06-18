@@ -71,22 +71,22 @@ function getInfoUser(isAdd) {
     // Check validation
     // Account
     if (isAdd) {
-        isValid &= 
-            validation.kiemTraRong(taiKhoan, "tbAccount", " (*) Vui lòng nhập tài khoản" ) 
-            // && 
-            // validation.kiemTraTonTai(
-            //     taiKhoan,
-            //     "tbAccount",
-            //     "(*) Tên tài khoản đã tồn tại",
-            //     service.getDataApi()
-            // )
+        isValid &=
+            validation.kiemTraRong(taiKhoan, "tbAccount", " (*) Vui lòng nhập tài khoản")
+        // && 
+        // validation.kiemTraTonTai(
+        //     taiKhoan,
+        //     "tbAccount",
+        //     "(*) Tên tài khoản đã tồn tại",
+        //     service.getDataApi()
+        // )
     }
 
 
     // Password
     isValid &=
         validation.kiemTraRong(matKhau, "tbPass", "(*) Vui lòng nhập mật khẩu") &&
-        validation.kiemTraDoDaiKiTu(matKhau, "tbPass", 6, 8, "(*) Vui lòng nhập từ 6 - 8 ký tự") && 
+        validation.kiemTraDoDaiKiTu(matKhau, "tbPass", 6, 8, "(*) Vui lòng nhập từ 6 - 8 ký tự") &&
         validation.kiemTraMatKhau(matKhau, "tbPass", "Mật khẩu chứa ít nhất 1 ký tự số, 1 ký tự in hoa, 1 ký tự đặc biệt")
 
 
@@ -95,7 +95,7 @@ function getInfoUser(isAdd) {
         validation.kiemTraRong(hoTen, "tbName", "(*) Vui lòng nhập họ tên") &&
         validation.kiemChuoiKyTu(hoTen, "tbName", "(*) Vui lòng nhập chuỗi ký tự");
 
-    
+
     // Email
     isValid &=
         validation.kiemTraRong(email, "tbEmail", "(*) Vui lòng nhập email") &&
@@ -119,22 +119,22 @@ function getInfoUser(isAdd) {
 
 
     // Description
-    isValid &= 
-        validation.kiemTraRong(moTa, "tbDesc", "(*) Vui lòng nhập mô tả") 
-        // &&
-        // validation.kiemTraDoDaiText(
-        //     moTa,
-        //     "tbDesc",
-        //     "(*) Nhập tối đa 60 ký tự",
-        //     60
-        // )
+    isValid &=
+        validation.kiemTraRong(moTa, "tbDesc", "(*) Vui lòng nhập mô tả")
+    // &&
+    // validation.kiemTraDoDaiText(
+    //     moTa,
+    //     "tbDesc",
+    //     "(*) Nhập tối đa 60 ký tự",
+    //     60
+    // )
 
 
 
     // Check isValid
     if (!isValid) return;
 
-    var user = new User (
+    var user = new User(
         taiKhoan,
         hoTen,
         matKhau,
@@ -158,6 +158,13 @@ getID("btnThemNguoiDung").onclick = function () {
     // Adding button "ADD"
     var footer = `<button class="btn btn-success" onclick="addUser()">ADD</button>`;
     document.getElementsByClassName("modal-footer")[0].innerHTML = footer;
+
+    getID("TaiKhoan").value = "";
+    getID("MatKhau").value = "";
+    getID("HoTen").value = "";
+    getID("Email").value = "";
+    getID("loaiNguoiDung").value = "";
+    getID("loaiNgonNgu").value = "";
 }
 
 
@@ -165,10 +172,10 @@ getID("btnThemNguoiDung").onclick = function () {
 function addUser() {
     var user = getInfoUser(true);
 
-    
+
     if (user) {
         // var user = new User("", taiKhoan, matKhau, hoTen, email, ngonNgu, loaiND);
-    
+
         service
             .addUserApi(user)
             .then(function () {
